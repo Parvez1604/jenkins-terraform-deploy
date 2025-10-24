@@ -1,29 +1,22 @@
 pipeline {
-    agent {
-    docker {
-      image 'hashicorp/terraform:latest'
-      args '-u root:root'
-    }
-  }
+  agent any
 
   environment {
     TF_HOME = "${WORKSPACE}/terraform"
   }
 
   stages {
-      stage('Checkout') {
+    stage('Checkout') {
       steps {
         git 'https://github.com/YOUR_USERNAME/jenkins-terraform-deploy.git'
       }
-      }
+    }
 
     stage('Terraform Init & Plan') {
-       steps {
-    dir("${TF_HOME}") {
-      sh 'terraform init'
-      sh 'terraform plan'
-    }
-  }
+      steps {
+        sh 'terraform init'
+        sh 'terraform plan'
+      }
     }
 
     stage('Apply Infrastructure') {

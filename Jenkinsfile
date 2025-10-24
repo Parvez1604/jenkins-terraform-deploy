@@ -1,5 +1,10 @@
 pipeline {
-  agent any
+    agent {
+    docker {
+      image 'hashicorp/terraform:latest'
+      args '-u root:root'
+    }
+  }
 
   environment {
     TF_HOME = "${WORKSPACE}/terraform"

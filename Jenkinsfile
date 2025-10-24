@@ -6,11 +6,6 @@ pipeline {
   }
 
   stages {
-    stage('Checkout') {
-      steps {
-        git url:'https://github.com/Parvez1604/jenkins-terraform-deploy.git'
-      }
-    }
 
     stage('Terraform Init & Plan') {
       steps {

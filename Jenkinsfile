@@ -8,10 +8,12 @@ pipeline {
   stages {
 
     stage('Terraform Init & Plan') {
-      steps {
-        sh 'terraform init'
-        sh 'terraform plan'
-      }
+       steps {
+    dir("${TF_HOME}") {
+      sh 'terraform init'
+      sh 'terraform plan'
+    }
+  }
     }
 
     stage('Apply Infrastructure') {
